@@ -1,0 +1,56 @@
+<%- include('partials/header.ejs') %>
+<div class="container text-center">
+  <h1>Nuestros Clientes</h1>
+  <div class="row mt-4">
+    <div class="col">
+      <table class="table table-bordered table-hover">
+        <thead>
+                    <tr>
+                        <th>N°</th>
+                        <th>Name</th>
+                        <th>Direccion</th>
+                        <th>Telefono</th>
+                        <th>Eliminar</th>
+                        <th>Modificar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (data) { %>
+                      <% for (var i = 0; i < data.length; i++) { %>
+                        <tr>
+                          <td><%= i + 1 %></td>
+                          <td><%= data[i].name %></td>
+                          <td><%= data[i].address %></td>
+                          <td><%= data[i].phone %></td>
+                          <td><a href="/customer/delete/<%= data[i].id %>" class="btn btn-danger">Eliminar</a></td>
+                          <td><a href="/customer/update/<%= data[i].id %>" class="btn btn-info">Modificar</a></td>
+                          
+                        </tr>
+                      <% } %>
+                    <% } %>
+                  </tbody>
+            </table>
+            <div class="col">
+              <div class="card">
+                <div class="card-body">
+                  <form action="/customer/add" method="post">
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="Name" class="form-control">
+                </div>
+                <br>
+                <div class="form-group">
+                    <input type="text" name="address" placeholder="Direccion" class="form-control">
+                </div>
+                <br>
+                <div class="form-group">
+                    <input type="text" name="phone" placeholder="Phone" class="form-control">
+                </div>
+                <br>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
+          </div>
+         </div>
+        </div>
+   </div>
+</div>
+<%- include('partials/footer.ejs') %>

@@ -1,0 +1,70 @@
+<%- include('partials/header.ejs') %>
+
+<div class="container text-center">
+  <h1>Productos</h1>
+  <div class="row mt-4">
+    <div class="col">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>N°</th>
+            <th>Codigo</th>
+            <th>Descripcion</th>
+            <th>Precio de Venta</th>
+            <th>Precio de Compra</th>
+            <th>Stock</th>
+            <th>Eliminar</th>
+            <th>Modificar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (data) { %>
+            <% for (var i = 0; i < data.length; i++) { %>
+              <tr>
+                <td><%= i + 1 %></td>
+                <td><%= data[i].codigo %></td>
+                <td><%= data[i].descripcion %></td>
+                <td><%= data[i].precioVenta %></td>
+                <td><%= data[i].precioCompra %></td>
+                <td><%= data[i].existencia %></td>
+                <td><a href="/productos/delete/<%= data[i].id %>" class="btn btn-danger">Eliminar</a></td>
+                <td><a href="/productos/update/<%= data[i].id %>" class="btn btn-info">Modificar</a></td>
+              </tr>
+            <% } %>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <form action="/productos/add" method="post">
+            <div class="form-group">
+              <input type="text" name="codigo" placeholder="Codigo" class="form-control">
+            </div>
+            <br>
+            <div class="form-group">
+              <input type="text" name="descripcion" placeholder="Descripcion" class="form-control">
+            </div>
+            <br>
+            <div class="form-group">
+              <input type="text" name="precioVenta" placeholder="Precio Venta" class="form-control">
+            </div>
+            <br>
+            <div class="form-group">
+              <input type="text" name="precioCompra" placeholder="Precio Compra" class="form-control">
+            </div>
+            <br>
+            <div class="form-group">
+              <input type="text" name="existencia" placeholder="Stock" class="form-control">
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer.ejs') %>
